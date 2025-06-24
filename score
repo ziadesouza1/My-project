@@ -1,0 +1,41 @@
+<!-- templates/score.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Scores</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+    <h2 class="mb-4">📊 Your Submissions</h2>
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Assessment</th>
+                <th>Task</th>
+                <th>Attempt #</th>
+                <th>Score</th>
+                <th>Submitted At</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for submission in submissions %}
+            <tr>
+                <td>{{ submission.assessment_title }}</td>
+                <td>{{ submission.task_title }}</td>
+                <td>{{ submission.attempt_number }}</td>
+                <td>{{ submission.score }}</td>
+                <td>{{ submission.submit_at }}</td>
+                <td>
+                    {% if submission.late %}
+                        <span class="text-danger">❌ Late (-10%)</span>
+                    {% else %}
+                        <span class="text-success">✅ On time</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
